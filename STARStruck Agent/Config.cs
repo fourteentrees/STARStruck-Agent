@@ -9,7 +9,7 @@ public class Config
 
     public string StarstruckURL { get; set; } = "http://starstruck.wmg.internal";
 
-    public string AgentKey { get; set; } = "CHANGEME";
+    public string AgentKey { get; set; } = "UNIMPLEMENTED";
 
     public SyncSettings SyncSettings { get; set; } = new();
 
