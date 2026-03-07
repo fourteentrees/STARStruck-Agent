@@ -1,5 +1,6 @@
 ﻿using STARStruck_Agent;
 using STARStruck_Agent.API;
+using System.Security.Principal;
 
 // Load configuration (creates default if doesn't exist)
 var config = Config.Load();
@@ -10,6 +11,13 @@ using var client = new StarstruckClient(config);
 Console.WriteLine("STARstruck Agent is running :D");
 Console.WriteLine($"Using STARStruck server: {config.StarstruckURL}");
 Console.WriteLine($"Using I2 directory: {config.I2Dir}");
+
+if (!IsRunningAsAdministrator())
+{
+    Console.WriteLine("ERROR: This application must be run as administrator.");
+    Console.WriteLine("Please right-click and select 'Run as administrator'.");
+    Environment.Exit(1);
+}
 
 // Check connection
 if (await client.CheckConnectionAsync())
@@ -65,3 +73,10 @@ if (config.SyncSettings.SpecialMessage)
 }
 
 Console.WriteLine("All downloads complete. Goodbye.");
+
+static bool IsRunningAsAdministrator()
+{
+    using var identity = WindowsIdentity.GetCurrent();
+    var principal = new WindowsPrincipal(identity);
+    return principal.IsInRole(WindowsBuiltInRole.Administrator);
+}
