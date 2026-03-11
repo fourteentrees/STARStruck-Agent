@@ -66,9 +66,9 @@ if (config.SyncSettings.SpecialMessage)
     var content = await client.DownloadFileAsync("/api/SpecialMessage.xml");
     if (content != null)
     {
-        var savePath = Path.Combine(eventsDir, "SpecialMessage.xml");
+        var savePath = Path.Combine(eventsDir, "SpecialMessageText.xml");
         await File.WriteAllTextAsync(savePath, content);
-        Console.WriteLine("SpecialMessage.xml downloaded successfully");
+        Console.WriteLine("SpecialMessageText.xml downloaded successfully");
     }
 }
 
