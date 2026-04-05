@@ -72,6 +72,17 @@ if (config.SyncSettings.SpecialMessage)
     }
 }
 
+if (config.SyncSettings.WDCPromoText)
+{
+    var content = await client.DownloadFileAsync($"/api/star/{headendId}/WxDotComPromoText.xml");
+    if (content != null)
+    {
+        var savePath = Path.Combine(eventsDir, "WxDotComPromoText.xml");
+        await File.WriteAllTextAsync(savePath, content);
+        Console.WriteLine("WxDotComPromoText.xml downloaded successfully");
+    }
+}
+
 Console.WriteLine("All downloads complete. Goodbye.");
 
 static bool IsRunningAsAdministrator()

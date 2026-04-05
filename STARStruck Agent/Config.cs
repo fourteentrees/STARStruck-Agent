@@ -69,4 +69,9 @@ public class SyncSettings
     /// Whether to sync Managed\SpecialMessage.xml.
     /// </summary>
     public bool SpecialMessage { get; set; } = true;
+
+    /// <summary>
+    /// Whether to sync Managed\WxDotComPromoText.xml.
+    /// </summary>
+    public bool WDCPromoText { get; set; } = true;
 }
